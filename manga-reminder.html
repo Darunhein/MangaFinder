@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manga Reminder</title>
+    <link rel="stylesheet" href="manga-reminder.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&family=Inter:wght@400;600&display=swap"
+    />
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <p class="hero-kana">マンガ</p>
+        <h1>Manga Reminder</h1>
+        <p class="hero-sub">
+          Registra los datos de los capítulos, volúmenes y números especiales de tus
+          series favoritas.
+        </p>
+      </header>
+
+      <main class="layout">
+        <section class="card form-card">
+          <h2>Nueva búsqueda</h2>
+          <form id="mangaForm" novalidate>
+            <div class="form-group">
+              <label for="autor">Nombre del mangaka (autor) *</label>
+              <input
+                type="text"
+                id="autor"
+                name="autor"
+                placeholder="Ej: Kenji Tanaka"
+                autocomplete="name"
+              />
+              <span class="error-msg" data-error="autor"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="numero">Número a buscar *</label>
+              <input
+                type="text"
+                id="numero"
+                name="numero"
+                placeholder="Ej: 1045 o 12.5"
+                inputmode="decimal"
+              />
+              <span class="error-msg" data-error="numero"></span>
+            </div>
+
+            <div class="form-group">
+              <label>Tipo de número *</label>
+              <div class="radio-group" id="tipoGroup">
+                <label>
+                  <input type="radio" name="tipo" value="Capítulo" />
+                  Capítulo
+                </label>
+                <label>
+                  <input type="radio" name="tipo" value="Volumen" />
+                  Volumen
+                </label>
+                <label>
+                  <input type="radio" name="tipo" value="One-shot" />
+                  One-shot
+                </label>
+              </div>
+              <span class="error-msg" data-error="tipo"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="serie">Serie de manga *</label>
+              <select id="serie" name="serie">
+                <option value="">Selecciona una serie *</option>
+                <option value="One Piece">One Piece</option>
+                <option value="Naruto">Naruto</option>
+                <option value="Bleach">Bleach</option>
+                <option value="Chainsaw Man">Chainsaw Man</option>
+                <option value="Jujutsu Kaisen">Jujutsu Kaisen</option>
+                <option value="Berserk">Berserk</option>
+                <option value="Spy x Family">Spy x Family</option>
+                <option value="Otra">Otra serie *</option>
+              </select>
+              <span class="error-msg" data-error="serie"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="idioma">Idioma del manga *</label>
+              <textarea
+                id="idioma"
+                name="idioma"
+                rows="4"
+                placeholder="Ej: Español, Inglés, Japonés, etc."
+              ></textarea>
+              <span class="error-msg" data-error="idioma"></span>
+            </div>
+
+            <div class="form-group">
+              <div class="checkbox-group">
+                <label>
+                  <input type="checkbox" id="terminos" name="terminos" />
+                  Confirmo que la información ingresada es correcta *
+                </label>
+              </div>
+              <span class="error-msg" data-error="terminos"></span>
+            </div>
+
+            <button type="submit" class="btn-submit">Buscar número</button>
+          </form>
+        </section>
+
+        <section class="card results-card">
+          <div class="results-header">
+            <h2>Resultados</h2>
+            <span class="badge-count" id="recordCount">0</span>
+          </div>
+
+          <p class="empty-state" id="emptyState">
+            Aún no hay resultados. Completa el formulario para agregar uno.
+          </p>
+
+          <div class="table-wrap" id="tableWrap" hidden>
+            <table class="records-table" id="recordsTable">
+              <thead>
+                <tr>
+                  <th>Autor</th>
+                  <th>Serie</th>
+                  <th>Tipo</th>
+                  <th>Número</th>
+                  <th>Referencia</th>
+                  <th>Idioma del manga</th>
+                </tr>
+              </thead>
+              <tbody id="recordsBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="manga-reminder.js"></script>
+  </body>
+</html>
